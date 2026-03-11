@@ -14,17 +14,16 @@ function App() {
   ];
   const [searchQuery, setSearchQuery] = useState("")
 
-  function onSearchChange(value) {
-    console.log("value")
-  }
+  const filteredPatients = patients
+    .filter(patient => patient.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
     <div className="App">
       <SearchBar
         searchQuery={searchQuery}
-        onSearchChange={onSearchChange}
+        onSearchChange={setSearchQuery}
       />
-      <PatientList patients={patients}></PatientList>
+      <PatientList patients={filteredPatients}></PatientList>
     </div>
   );
 }
